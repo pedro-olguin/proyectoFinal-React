@@ -1,5 +1,5 @@
 import React from "react";
-import ItemCount from "./ItemCount";
+import ItemCount from "../components/ItemCount";
 import "../styles/Item.css";
 import { Link } from "react-router-dom";
 

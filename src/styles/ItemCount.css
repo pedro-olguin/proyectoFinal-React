@@ -1,0 +1,18 @@
+.btnContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  padding: 5px;
+}
+.btnContainer div {
+  width: 220px;
+}
+.btnCount {
+  width: 30px;
+  margin: 10px;
+}
+
+.numberCount {
+  width: max-content;
+}

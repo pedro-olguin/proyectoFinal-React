@@ -1,0 +1,16 @@
+.mainStyle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  position: relative;
+  background-image: url("https://www.shutterstock.com/shutterstock/photos/1810878547/display_1500/stock-photo-empty-coffee-table-over-defocused-coffee-shop-background-with-copy-space-1810878547.jpg");
+}
+
+.mainStyle div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}

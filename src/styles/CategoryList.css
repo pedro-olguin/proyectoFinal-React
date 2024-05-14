@@ -1,0 +1,15 @@
+.category--list {
+  display: flex;
+  padding: 15px;
+  list-style: none;
+}
+
+.category--list li a {
+  text-decoration: none;
+  padding: 40px;
+  color: brown;
+}
+
+.active-link {
+  text-decoration: underline;
+}

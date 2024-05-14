@@ -1,0 +1,8 @@
+h1 {
+  text-align: center;
+  color: white;
+  text-decoration: underline;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 5px;
+}

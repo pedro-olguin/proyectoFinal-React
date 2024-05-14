@@ -1,0 +1,40 @@
+.cartContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+  text-align: center;
+  border: solid 2px #a9a39a;
+  width: 250px;
+  height: 400px;
+  background-color: #a9a39a;
+}
+
+.cartImg {
+  max-width: 250px;
+  margin-bottom: 20px;
+}
+
+.cartText {
+  padding: 5px;
+}
+
+.cartText p {
+  margin: 5px 0px;
+  width: 220px;
+}
+
+.btnAdd {
+  padding: 5px 10px;
+  border: none;
+  background-color: brown;
+  color: white;
+}
+.btnAdd:hover {
+  background-color: black;
+  color: brown;
+}
+
+.btnAdd:active {
+  box-shadow: -2px -2px 1px brown;
+  font-size: 13px;
+}

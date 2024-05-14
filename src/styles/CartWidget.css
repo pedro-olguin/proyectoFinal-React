@@ -1,0 +1,14 @@
+.a--cart {
+  display: flex;
+  text-decoration: none;
+  padding: 15px;
+  align-items: center;
+}
+
+.cart--number {
+  border: 1px solid red;
+  border-radius: 45%;
+  padding: 2px;
+  background-color: red;
+  color: white;
+}

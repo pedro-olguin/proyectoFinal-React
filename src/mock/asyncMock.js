@@ -91,7 +91,6 @@ export const getProducts = () => {
 };
 
 export const getProductById = (id) => {
-  console.log({ id });
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(productos.find((producto) => producto.id == id));

@@ -9,7 +9,6 @@ function ItemListContainer({ contenido }) {
   const { productos, setProductos, cargando, setCargando } = useProducts();
 
   const params = useParams();
-  console.log(params);
 
   useEffect(() => {
     if (params.categoryName) {

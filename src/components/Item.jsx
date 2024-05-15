@@ -25,17 +25,11 @@ const Item = ({ item }) => {
             </Link>
             <p>{item.descripcion}</p>
             <p>${item.precio}</p>
-            <div>
-              <ItemCount
-                stock={item.stock}
-                count={count}
-                decrement={decrement}
-                increment={increment}
-              />
-            </div>
-            <button className="btnAdd" onClick={() => onAdd(item, count)}>
-              Agregar al carrito
-            </button>
+            <Link to={`/producto/${item.id}`}>
+              <button className="btnAdd" onClick={() => onAdd(item, count)}>
+                Seleccionar
+              </button>
+            </Link>
           </div>
         </div>
       </div>

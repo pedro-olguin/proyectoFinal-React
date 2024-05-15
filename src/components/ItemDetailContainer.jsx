@@ -7,7 +7,6 @@ const ItemDetailContainer = () => {
   const { productoId } = useParams();
 
   const { producto, cargando } = useProductById(productoId);
-  console.log(producto);
 
   if (cargando) return <h1 className="cargando">Cargando...</h1>;
 

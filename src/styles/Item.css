@@ -38,3 +38,11 @@
   box-shadow: -2px -2px 1px brown;
   font-size: 13px;
 }
+
+.cartList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}

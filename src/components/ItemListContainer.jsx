@@ -3,22 +3,28 @@ import "../styles/ItemListContainer.css";
 import useProducts from "../hooks/useProducts";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { getProductByCategory, getProducts } from "../mock/asyncMock";
+import useProductsByCategory from "../hooks/useProductsByCategory";
 
 function ItemListContainer({ contenido }) {
   const { productos, setProductos, cargando, setCargando } = useProducts();
+  const {
+    productos: products,
+    setProductos: setProducts,
+    cargando: loading,
+    setCargando: setLoading,
+  } = useProductsByCategory();
 
   const params = useParams();
 
   useEffect(() => {
     if (params.categoryName) {
-      getProductByCategory(params.categoryName)
+      useProductsByCategory(params.categoryName)
         .then((data) => {
-          setProductos(data);
+          setProducts(data);
         })
-        .finally(() => setCargando(false));
+        .finally(() => setLoading(false));
     } else {
-      getProducts()
+      useProducts()
         .then((data) => {
           setProductos(data);
         })
@@ -26,12 +32,12 @@ function ItemListContainer({ contenido }) {
     }
   }, [params.categoryName]);
 
-  if (cargando) return <h1 className="cargando">Cargando...</h1>;
+  if (cargando || loading) return <h1 className="cargando">Cargando...</h1>;
 
   return (
     <div>
       <h1>{contenido}</h1>
-      <ItemList productos={productos} />
+      <ItemList productos={productos || products} />
     </div>
   );
 }

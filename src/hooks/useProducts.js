@@ -1,14 +1,24 @@
 import { useEffect, useState } from "react";
-import { getProducts } from "../mock/asyncMock";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+
+console.log({ getFirestore });
 
 export default function useProducts() {
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-    getProducts()
-      .then((data) => setProductos(data))
-      .finally(() => setCargando(false));
+    const bd = getFirestore();
+
+    const productsCollections = collection(bd, "productos");
+
+    getDocs(productsCollections)
+      .then((snapshot) => {
+        setProductos(snapshot.docs.map((doc) => doc.data()));
+      })
+      .finally(() => {
+        setCargando(false);
+      });
   }, []);
 
   return { productos, setProductos, cargando, setCargando };

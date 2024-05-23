@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CartContext from "./CartContext";
 
 export default function CartProvider({ children }) {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(
+    localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []
+  );
 
   const addToCart = (producto, cantidad) => {
     const productoEnCarrito = cart.find(
@@ -18,9 +20,13 @@ export default function CartProvider({ children }) {
       });
       setCart(cargarEnCarrito);
     } else {
-      setCart(...cart, { producto, cantidad });
+      setCart([...cart, { producto, cantidad }]);
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   const removeFromCart = (productoId, cantidad) => {
     const itemInCart = cart.find(
@@ -49,12 +55,9 @@ export default function CartProvider({ children }) {
     setCart([]);
   };
 
-  const cartTotal = cart
-    .reduce((acc, productos) => {
-      return acc + productos.producto.precio * productos.cantidad;
-    }, 0)
-    .toFixed(2);
-
+  const cartTotal = cart.reduce((acc, productos) => {
+    return acc + productos.producto.precio * productos.cantidad;
+  }, 0);
   return (
     <CartContext.Provider
       value={{ cart, addToCart, removeFromCart, clearCart, cartTotal }}

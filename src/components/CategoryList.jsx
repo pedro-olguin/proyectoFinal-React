@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../styles/CategoryList.css";
 
 const Rutas = [
@@ -13,12 +13,7 @@ function CategoryList() {
       <ul className="category--list">
         {Rutas.map((ruta) => (
           <li key={ruta.path}>
-            <NavLink
-              className={({ isActive }) => (isActive ? "active-link" : "")}
-              to={ruta.path}
-            >
-              {ruta.label}
-            </NavLink>
+            <Link to={ruta.path}>{ruta.label}</Link>
           </li>
         ))}
       </ul>

@@ -1,14 +1,27 @@
 import { useEffect, useState } from "react";
-import { getProductById } from "../mock/asyncMock";
+
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
 
 export default function useProductById(productoId) {
   const [producto, setProducto] = useState(null);
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-    getProductById(productoId)
-      .then((data) => {
-        setProducto(data);
+    const bd = getFirestore();
+
+    const q = query(collection(bd, "productos"), where("id", "==", productoId));
+
+    getDocs(q)
+      .then((snapshot) => {
+        setProducto(
+          snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+        );
       })
       .finally(() => {
         setCargando(false);

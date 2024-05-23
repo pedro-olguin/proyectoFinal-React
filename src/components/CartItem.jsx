@@ -35,3 +35,5 @@ const CartItem = ({ productos }) => {
     </div>
   );
 };
+
+export default CartItem;

@@ -1,9 +1,17 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 # proyectoFinal-React
+
+## Este proyecto esta realizado con Vite + React
+
+### Equipo de trabajo.
+
+- Pedro Olguin.
+
+#### Para poder inicializar este proyecto debes seguir los siguientes pasos en la consola de VSCode.
+
+1. git clone https://github.com/pedro-olguin/proyectoFinal-React (para clonar el repositorio)
+
+2. npm i (para instalar dependencias)
+
+3. npm run dev ( para inicializarlo en modo desarrollador)
+
+El programa trabaja con firebase las dependencias estan instaladas para correr el proyecto pero no estan disponibles para verlas publicamente. En caso de necesitarlas pedirlas por PRIVADO.

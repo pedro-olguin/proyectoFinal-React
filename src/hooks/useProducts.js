@@ -1,25 +1,48 @@
 import { useEffect, useState } from "react";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
 
-console.log({ getFirestore });
-
-export default function useProducts() {
+export default function useProducts(categoryName) {
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
     const bd = getFirestore();
 
-    const productsCollections = collection(bd, "productos");
+    const productsCollection = collection(bd, "productos");
+    if (categoryName) {
+      const productsQuery = query(
+        productsCollection,
+        where("categoria", "==", categoryName)
+      );
+      getDocs(productsQuery)
+        .then((snapshot) => {
+          setProductos(
+            snapshot.docs.map((doc) => ({
+              id: doc.id,
+              ...doc.data(),
+            }))
+          );
+        })
+        .finally(() => setCargando(false));
+    } else {
+      getDocs(productsCollection)
+        .then((snapshot) => {
+          setProductos(
+            snapshot.docs.map((doc) => ({
+              id: doc.id,
+              ...doc.data(),
+            }))
+          );
+        })
+        .finally(() => setCargando(false));
+    }
+  }, [categoryName]);
 
-    getDocs(productsCollections)
-      .then((snapshot) => {
-        setProductos(snapshot.docs.map((doc) => doc.data()));
-      })
-      .finally(() => {
-        setCargando(false);
-      });
-  }, []);
-
-  return { productos, setProductos, cargando, setCargando };
+  return { productos, cargando };
 }

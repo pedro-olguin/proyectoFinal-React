@@ -46,6 +46,9 @@ const ItemDetail = ({ producto }) => {
           </button>
         </div>
       </div>
+      <p>
+        Quedan <strong>{producto.stock - count}</strong> unidades disponibles
+      </p>
     </div>
   );
 };

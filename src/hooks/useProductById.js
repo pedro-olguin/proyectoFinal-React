@@ -1,12 +1,5 @@
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
-
-import {
-  collection,
-  getDocs,
-  getFirestore,
-  query,
-  where,
-} from "firebase/firestore";
 
 export default function useProductById(productoId) {
   const [producto, setProducto] = useState(null);
@@ -15,13 +8,15 @@ export default function useProductById(productoId) {
   useEffect(() => {
     const bd = getFirestore();
 
-    const q = query(collection(bd, "productos"), where("id", "==", productoId));
-
-    getDocs(q)
+    const query = doc(bd, "productos", productoId);
+    getDoc(query)
       .then((snapshot) => {
-        setProducto(
-          snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-        );
+        if (snapshot.exists()) {
+          setProducto({
+            id: snapshot.id,
+            ...snapshot.data(),
+          });
+        }
       })
       .finally(() => {
         setCargando(false);

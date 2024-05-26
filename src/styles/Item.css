@@ -5,13 +5,13 @@
   text-align: center;
   border: solid 2px #a9a39a;
   width: 250px;
-  height: 400px;
+  height: 420px;
   background-color: #a9a39a;
 }
 
 .cartImg {
   max-width: 250px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .cartText {
@@ -20,7 +20,7 @@
 
 .cartText p {
   margin: 5px 0px;
-  width: 220px;
+  width: 230px;
 }
 
 .btnAdd {
@@ -36,7 +36,6 @@
 
 .btnAdd:active {
   box-shadow: -2px -2px 1px brown;
-  font-size: 13px;
 }
 
 .cartList {

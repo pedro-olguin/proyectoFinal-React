@@ -7,14 +7,15 @@ import CartContext from "../contexts/CartContext";
 
 const ItemDetail = ({ producto }) => {
   const { count, decrement, increment } = useCount(0);
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, checkAddToCart } = useContext(CartContext);
 
   const handleAddToCart = () => {
     addToCart(producto, count);
+    checkAddToCart(producto, count);
   };
 
   return (
-    <div>
+    <>
       <div className="cartContainer">
         <Link to={`/producto/${producto.id}`}>
           <img
@@ -37,6 +38,12 @@ const ItemDetail = ({ producto }) => {
               increment={increment}
             />
           </div>
+          <p>
+            Quedan <strong>{producto.stock - count}</strong> unidades
+            disponibles
+          </p>
+        </div>
+        <div>
           <button
             className="btnAdd"
             onClick={handleAddToCart}
@@ -46,10 +53,7 @@ const ItemDetail = ({ producto }) => {
           </button>
         </div>
       </div>
-      <p>
-        Quedan <strong>{producto.stock - count}</strong> unidades disponibles
-      </p>
-    </div>
+    </>
   );
 };
 

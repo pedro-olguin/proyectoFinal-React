@@ -4,6 +4,7 @@ import CartContext from "../contexts/CartContext";
 import CartDetails from "./CartDetails";
 import "../styles/CheckoutContainer.css";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
+import Swal from "sweetalert2";
 
 export default function CheckoutContainer() {
   const { cart, clearCart, cartTotal } = useContext(CartContext);
@@ -24,15 +25,21 @@ export default function CheckoutContainer() {
     const ordersCollection = collection(bd, "orders");
 
     addDoc(ordersCollection, order).then(({ id }) => {
-      alert(`Compra REALIZADA con EXITO, Numero de orden: ${id}`);
+      Swal.fire({
+        icon: "succes",
+        title: `Gracias por su compra! ${buyer.nombre}`,
+        text: `Tu Numero de comprobante es ${id}`,
+        footer: `El Total es de $${cartTotal}`,
+      });
 
       clearCart();
+      e.target.reset();
     });
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className="card" onSubmit={handleSubmit}>
         <div className="inputsContainer">
           <div className="inputRequired">
             <label>Nombre</label>

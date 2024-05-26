@@ -8,10 +8,6 @@
 .btnContainer div {
   width: 220px;
 }
-.btnCount {
-  width: 30px;
-  margin: 10px;
-}
 
 .numberCount {
   width: max-content;

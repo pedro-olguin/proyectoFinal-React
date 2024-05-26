@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import CartContext from "./CartContext";
+import Swal from "sweetalert2";
 
 export default function CartProvider({ children }) {
   const [cart, setCart] = useState(
@@ -58,9 +59,35 @@ export default function CartProvider({ children }) {
   const cartTotal = cart.reduce((acc, productos) => {
     return acc + productos.producto.precio * productos.cantidad;
   }, 0);
+
+  const checkAddToCart = (producto, cantidad) => {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      },
+    });
+    Toast.fire({
+      icon: "success",
+      title: `Has agregado ${cantidad}- ${producto.titulo}`,
+    });
+  };
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, clearCart, cartTotal }}
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        cartTotal,
+        checkAddToCart,
+      }}
     >
       {children}
     </CartContext.Provider>
